@@ -286,6 +286,10 @@ class Handler {
 			$exception = new FatalThrowableError($exception);
 		}
 
+		if (! $exception instanceof \Throwable) {
+			$exception = new FatalThrowableError($exception);
+		}
+
 		return $displayer->display($exception);
 	}
 

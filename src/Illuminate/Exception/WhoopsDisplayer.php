@@ -40,7 +40,7 @@ class WhoopsDisplayer implements ExceptionDisplayerInterface {
 	 * @param  \Throwable  $exception
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function display($exception)
+	public function display(\Throwable $exception)
 	{
 		$status = $exception instanceof HttpExceptionInterface ? $exception->getStatusCode() : 500;
 
