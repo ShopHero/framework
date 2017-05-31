@@ -287,7 +287,7 @@ class Handler {
 		}
 
 		if (! $exception instanceof \Throwable) {
-			$exception = new FatalThrowableError($exception);
+			return $this->formatException($exception);
 		}
 
 		return $displayer->display($exception);
