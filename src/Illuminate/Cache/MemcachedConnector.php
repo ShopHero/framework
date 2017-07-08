@@ -22,9 +22,12 @@ class MemcachedConnector {
 		foreach ($servers as $server)
 		{
 
+			// use timeout from config or default of 100ms
+			$timeout = (empty($server['timeout']) == false)? 
+				floatval($server['timeout']) / 1000 : 100 / 1000; 
+
 			// actually test server availability by opening a port
-			$timeout = 15 / 1000; // milliseconds 
-			$fp = fsockopen($server['host'], $server['port'],  $errno,  $errstr,  $timeout);
+			@$fp = fsockopen($server['host'], $server['port'],  $errno,  $errstr,  $timeout);
 
 			if (is_resource($fp))
 			{
