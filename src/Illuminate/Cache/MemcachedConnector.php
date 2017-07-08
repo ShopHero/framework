@@ -21,9 +21,22 @@ class MemcachedConnector {
 		// servers we'll verify the connection is successful and return it back.
 		foreach ($servers as $server)
 		{
-			$memcached->addServer(
-				$server['host'], $server['port'], $server['weight']
-			);
+
+			// actually test server availability by opening a port
+			$timeout = 15 / 1000; // milliseconds 
+			$fp = fsockopen($server['host'], $server['port'],  $errno,  $errstr,  $timeout);
+
+			if (is_resource($fp))
+			{
+			  // connection successful
+			  fclose($fp);
+
+				$memcached->addServer(
+					$server['host'], $server['port'], $server['weight']
+				);
+			}
+
+			
 		}
 
 		if ($memcached->getVersion() === false)
