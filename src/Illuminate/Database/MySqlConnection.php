@@ -5,6 +5,8 @@ use Doctrine\DBAL\Driver\PDOMySql\Driver as DoctrineDriver;
 use Illuminate\Database\Query\Grammars\MySqlGrammar as QueryGrammar;
 use Illuminate\Database\Schema\Grammars\MySqlGrammar as SchemaGrammar;
 
+use Illuminate\Support\Str;
+
 class MySqlConnection extends Connection {
 
 	/**
