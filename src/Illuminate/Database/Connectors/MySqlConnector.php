@@ -99,7 +99,7 @@ class MySqlConnector extends Connector implements ConnectorInterface {
      * @param  array  $config
      * @return void
      */
-    protected function setModes(\PDO $connection, array $config)
+    protected function setModes($connection, array $config)
     {
         if (isset($config['modes'])) {
             $modes = implode(',', $config['modes']);
